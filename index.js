@@ -64,8 +64,9 @@ app.use(express.static('public'));
 
 //ERROR-HANDLING MIDDLEWARE FUNCTION
 
-app.use((err, req, res, next) => {
-console.error(err.stack);
+//app.use((err, req, res, next) =>
+app.get( '/path', (req, res, next) {
+console.log(err.stack);
 res.status(500).send('Something went wrong!');
 });
 
