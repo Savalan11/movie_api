@@ -50,12 +50,12 @@ let topMovies = [
 ];
 
 // GET requests
-app.get('/', (err, req, res) => {
+app.get('/', (req, res, next) => {
   res.send('Welcome to my movie club!');
 });
 
 
-app.get('/movies', (err, req, res) => {
+app.get('/movies', (req, res, next) => {
   res.json(topMovies);
 });
 
@@ -64,9 +64,8 @@ app.use(express.static('public'));
 
 //ERROR-HANDLING MIDDLEWARE FUNCTION
 
-//app.use((err, req, res, next) =>
-app.get( '/path', (req, res, next) {
-console.log(err.stack);
+app.use((err, req, res, next) => {
+console.error(err.stack);
 res.status(500).send('Something went wrong!');
 });
 
