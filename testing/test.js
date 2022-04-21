@@ -10,17 +10,25 @@ app = express(),
     {
       id: "1",
       name: "Savalan",
-      //email: "savalan.suleymanli@gmail.com",
-      //password: "St@rt1987!",
-      //birthday: "24/05/1987",
+      email: "savalan.suleymanli@gmail.com",
+      password: "St@rt1987!",
+      birthday: "24/05/1987",
       favoriteMovies: []
     },
     {
       id: "2",
       name: "Max",
-      //email: "savash.cakir@gmail.com",
-      //password: "End1987!",
-      //birthday: "20/05/1998",
+      email: "savashsuleymanli@gmail.com",
+      password: "End1987!",
+      birthday: "20/05/1998",
+      favoriteMovies: ["Life Is Beautiful"]
+    },
+    {
+      id: "3",
+      name: "Freyd",
+      email: "gunelkazimli94@gmail.com",
+      password: "Begin1994!",
+      birthday: "10/05/1994",
       favoriteMovies: ["Life Is Beautiful"]
     },
   ]
@@ -31,15 +39,18 @@ app = express(),
       Title:"The Shawshank Redemption",
       Description:"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
       Genre: {
+      id: "3",
       Name:"Drama",
       Description:"drama is a category of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."
     },
     Director: {
+    id: "4",
     Name:"F. Darabont",
     Bio:"Frank Árpád Darabont is an American film director, screenwriter and producer. He has been nominated for three Academy Awards and a Golden Globe Award.",
-    Birth: 1959
+    Birth: 1959,
+    Death:
     },
-    ImageURL: "https://www.amazon.de/The-Shawshank-Redemption-Single-Disc-Edition/dp/B000P0J0EW",
+    ImageURL: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
     Featured: false
   },
 
@@ -47,49 +58,172 @@ app = express(),
     Title:"Life Is Beautiful",
     Description:"LIFE IS BEAUTIFUL is a Chaplinesque fable about the power of imagination set against the stark reality of World War II Europe.",
     Genre: {
+    id: "5",
     Name:" Comedy Drama",
     Description:"This is a serious drama that has comic elements."
   },
   Director: {
+  id: "6",
   Name:"Roberto Benigni",
   Bio:"Roberto Remigio Benigni Cavaliere di Gran Croce OMRI is an Italian actor, comedian, screenwriter and director.",
-  Birth: 1952
+  Birth: 1952,
+  Death:
   },
   ImageURL: "https://upload.wikimedia.org/wikipedia/en/7/7c/Vitaebella.jpg",
   Featured: false
 },
-    {
-      title: 'Goodfellas',
-      author: 'N. Pileggi'
-    },
-    {
-      title: 'The Matrix',
-      author: 'L. Wachowskis'
-    },
-    {
-      title: 'Inception',
-      author: 'Christopher Nolan'
-    },
-    {
-      title: 'Forrest Gump',
-      author: 'Winston Groom'
-    },
-    {
-      title: 'The Good, The Bad And The Ugly',
-      author: 'Sergio Leone'
-    },
-    {
-      title: 'Pulp Fiction',
-      author: 'Quentin Tarantino'
-    },
-    {
-      title: 'The Dark Knight ',
-      author: 'Christpher Nolan'
-    },
-    {
-      title: 'The Godfather ',
-      author: 'Mario Puzo'
-    }
+{
+  Title:"Goodfellas",
+  Description:"The story of Irish-Italian American, Henry Hill, and how he lives day-to-day life as a member of the Mafia.",
+  Genre: {
+  //id: "3",
+  Name:"Gangster",
+  Description:"A gangster film or gangster movie is a film belonging to a genre that focuses on gangs and organized crime."
+},
+Director: {
+//id: "4",
+Name:"N.Pileggi",
+Bio:"Nicholas Pileggi is an American author, producer and screenwriter.",
+Birth: 1933,
+Death:
+},
+ImageURL: "https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg",
+Featured: true
+},
+
+{
+  Title:"The Matrix",
+  Description:"The Matrix is a 1999 science fiction action film written and directed by the Wachowskis.",
+  Genre: {
+  //id: "3",
+  Name:"Science fiction",
+  Description:"Science fiction is a genre of speculative fiction which typically deals with imaginative and futuristic concepts."
+},
+Director: {
+//id: "4",
+Name: "The Wachowskis",
+Bio:"Lana Wachowski and Lilly Wachowski are American film and television directors, writers and producers.",
+Birth: 1965,
+Death:
+},
+ImageURL: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg",
+Featured: true
+},
+
+{
+  Title:"Inception",
+  Description:"Dreams and cinema — Inception is a 2010 science fiction action film written and directed by Christopher Nolan.",
+  Genre: {
+  //id: "3",
+  Name:"Science fiction",
+  Description:"Science fiction is a genre of speculative fiction which typically deals with imaginative and futuristic concepts."
+},
+Director: {
+//id: "4",
+Name: "Christopher Nolan",
+Bio:"Christopher Nolan CBE is a British-American film director, producer, and screenwriter.",
+Birth: 1951,
+Death:
+},
+ImageURL: "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
+Featured: true
+},
+
+{
+  Title:"Tenet",
+  Description:"Tenet is a 2020 science fiction action spy film directed, written and co-produced (alongside his wife Emma Thomas) by Christopher Nolan.",
+  Genre: {
+  //id: "3",
+  Name:"Science fiction",
+  Description:"Science fiction is a genre of speculative fiction which typically deals with imaginative and futuristic concepts."
+},
+Director: {
+//id: "4",
+Name: "Christopher Nolan",
+Bio:"Christopher Nolan CBE is a British-American film director, producer, and screenwriter.",
+Birth: 1951,
+Death:
+},
+ImageURL: "https://en.wikipedia.org/wiki/Tenet_(film)#/media/File:Tenet_movie_poster.jpg",
+Featured: true
+},
+
+{
+  Title:"The Good, The Bad And The Ugly",
+  Description:"The Good, the Bad and the Ugly is a 1966 Italian epic spaghetti Western film directed by Sergio Leone and starring Clint Eastwood as the Good.",
+  Genre: {
+  //id: "3",
+  Name:"Western",
+  Description:"The Western is a genre of fiction and film set primarily in the latter half of the 19th century and the early 20th century in the Western United States."
+},
+Director: {
+//id: "4",
+Name: "Sergio Leone",
+Bio:"Sergio Leone was an Italian film director, producer and screenwriter credited as the creator of the Spaghetti Western genre and widely regarded as one of the most influential directors in the history of cinema. ",
+Birth: 1929,
+Death: 1989
+},
+ImageURL: "https://en.wikipedia.org/wiki/The_Good,_the_Bad_and_the_Ugly#/media/File:Good_the_bad_and_the_ugly_poster.jpg",
+Featured: true
+},
+
+{
+  Title:"Pulp Fiction",
+  Description:"In the realm of underworld, a series of incidents intertwines the lives of two Los Angeles mobsters, a gangster's wife, a boxer and two small-time criminals.",
+  Genre: {
+  //id: "3",
+  Name:"Comedy crime film",
+  Description:"Crime comedy films are a hybrid of the crime film and the comedy that play with the conventions of the crime film."
+},
+Director: {
+//id: "4",
+Name: "Quentin Tarantino",
+Bio:"Quentin Jerome Tarantino is an American filmmaker, actor, film critic and author. His films are characterized by frequent references to popular culture and film history. ",
+Birth: 1963,
+Death:
+},
+ImageURL: "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
+Featured: true
+},
+
+{
+  Title:"The Dark Knight",
+  Description:"The Dark Knight is a 2008 superhero film directed, co-produced, and co-written by Christopher Nolan.",
+  Genre: {
+  //id: "3",
+  Name:"Action-Drama",
+  Description:"Action dramas tend to be visceral, not intellectual, with dynamic fight scenes, extensive chase scenes, and heart-racing stunts."
+},
+Director: {
+//id: "4",
+Name: "Christopher Nolan",
+Bio:"Christopher Nolan CBE is a British-American film director, producer, and screenwriter.",
+Birth: 1951,
+Death:
+},
+ImageURL: "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg",
+Featured: true
+},
+
+{
+  Title:"The Godfather",
+  Description:"Don Vito Corleone, head of a mafia family, decides to hand over his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.",
+  Genre: {
+  //id: "3",
+  Name:"Gangster",
+  Description:"A gangster film or gangster movie is a film belonging to a genre that focuses on gangs and organized crime."
+},
+Director: {
+//id: "4",
+Name: "Mario Puzo",
+Bio:"Mario Francis Puzo was an American author, screenwriter, and journalist. He is known for his crime novels.",
+Birth: 1920,
+Death: 1999
+},
+ImageURL: "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
+Featured: true
+}
+
   ];
 
   // create
