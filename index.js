@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-//const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -10,11 +10,8 @@ app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 const mongoose = require('mongoose');
 const Models = require('./models.js');
-
-
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -22,7 +19,7 @@ const Genres = Models.Genre;
 const Directors = Models.Director;
 
 //CONNECT WITH MONGOOSE
-mongoose.connect('mongodb://localhost:27017/myMovieList', {
+mongoose.connect(process.env.CONNECTION_URI || 'mongodb://localhost:27017/myMovieList', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -46,13 +43,13 @@ Movies.find()
   });
 });
 
-//GET: list of movies
-app.get('/users', function (req, res) {
+//GET: list of users
+app.get('/users', (req, res) => {
   Users.find()
-  .then(function (users)
+  .then (users) => {
   res.status(201).json(users);
 })
-.catch(function (err) {
+.catch((err) => {
 console.error(err);
 res.status(500).send('Error: ' + err);
 });
@@ -90,13 +87,23 @@ app.get('/director/:Name', (req, res) => {
         res.status(500).send('Error: ' + error);
     });
 });
+// Get a user by username
+app.get('/users/:Username', (req, res) => {
+  Users.findOne({ Username: req.params.Username })
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 // Post-create a user account
 app.post('/users', (req, res) => {
-  Users.FindOne()({ Username: req.body.Username })
+  Users.FindOne({ Username: req.body.Username })
   .then((user) => {
     if(user) {
         return res.status(400).send(req.body.Username + ' already exists');
-
       } else {
         Users.create({
           Username: req.body.Username,
@@ -106,15 +113,15 @@ app.post('/users', (req, res) => {
         })
         .then((user) => {
           res.status(201).json(user); })
-        .catch((err) => {
-          console.error(err);
+        .catch((error) => {
+          console.error(error);
           res.status(500).send('Error: ' + error);
         });
         }
       })
       .catch((err) => {
       console.error(err);
-      res.status(500).send('Error ' + err);
+      res.status(500).send('Error ' + error);
   });
 });
 
@@ -128,7 +135,7 @@ app.put('/users/:Username',(req, res) => {
                  Birthday: req.body.Birthday,
               },
         },
-        { new:true }), //returns the updated document
+        { new:true }, //returns the updated document
         (err.updatedUser) => {
           if(err) {
             console.error(err);
@@ -136,9 +143,24 @@ app.put('/users/:Username',(req, res) => {
           } else {
             res.json(updatedUser);
           }
-        }
-      );
+      });
     });
+
+    // Add a movie to a user's list of favorites
+app.post('/users/:Username/movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $push: { FavoriteMovies: req.params.MovieID }
+   },
+   { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
+});
 
     //  delete user account
 app.delete('/users/:Username', (req, res) => {
@@ -156,4 +178,7 @@ app.delete('/users/:Username', (req, res) => {
     });
 });
 
-app.listen(8080, () => console.log("Your app is listening on port 8080"))
+app.listen(port, '0.0.0.0',() => {
+ console.log('Listening on Port ' + port);
+});
+//app.listen(8080, () => console.log("Your app is listening on port 8080"))
