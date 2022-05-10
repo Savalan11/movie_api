@@ -41,12 +41,12 @@ const Genres = Models.Genre;
 const Directors = Models.Director;
 
 //CONNECT WITH MONGOOSE
-mongoose.connect(process.env.CONNECTION_URI || 'mongodb://localhost:27017/myMovieList', {
-  useNewUrlParser: true,
+/* mongoose.connect(process.env.CONNECTION_URI || 'mongodb://localhost:27017/myMovieList', {
+useNewUrlParser: true,
   useUnifiedTopology: true
-});
+}); */
 
-
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 // Welcome page
 app.get('/', (req, res) => {
   res.send('Welcome to my MovieList!');
