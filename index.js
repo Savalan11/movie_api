@@ -41,8 +41,8 @@ const Genres = Models.Genre;
 const Directors = Models.Director;
 
 //CONNECT WITH MONGOOSE
-/* mongoose.connect(process.env.CONNECTION_URI || 'mongodb://localhost:27017/myMovieList', {
-useNewUrlParser: true,
+/* mongoose.connect('mongodb://localhost:27017/myMovieList', {
+  useNewUrlParser: true,
   useUnifiedTopology: true
 }); */
 
