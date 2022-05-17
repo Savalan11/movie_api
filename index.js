@@ -13,7 +13,7 @@ const cors = require('cors');
 app.use(cors());
 
 // To allow certain origins to be given access to make requests
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://testsite.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 });
 
 //GET: list of movies
-app.get('/movies', passport.authenticate('jwt', { session: false }),
+/* app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find()
       .then((movies) => {
@@ -63,7 +63,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }),
         console.error(error);
         res.status(500).send('Error: ' + error);
       });
-  });
+  }); */
 
 //GET : a movie called by title
 app.get('/movies/:title', passport.authenticate('jwt', { session: false }),
