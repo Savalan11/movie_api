@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Flix API</title>
+  <style>
+    table,
+    th,
+    td {
+      border: 2px solid gray;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>My Flix App</h1>
+  <p>This is an API which enables users access to a movie database where they can search for information about movies such as, director, artwork, genre. etc. <br>
+    Users will be able to sign up, create a favorites list, and update personal information.<br>
+  </p>
+  <br><br>
+  <h3>URL requests and endpoints</h3>
+  <br>
+  <table style="width:100%">
+    <tr>
+      <th>Core Logic</th>
+      <th>URL</th>
+      <th>HTTP Method</th>
+      <th>Query parameters</th>
+      <th>Request</th>
+      <th>Response</th>
+    </tr>
+    <tr>
+      <td>Return a list of all movies to the user</td>
+      <td>/movies</td>
+      <td>GET</td>
+      <td>None</td>
+      <td>None</td>
+      <td>A JSON object holding data about all movies</td>
+    </tr>
+    <tr>
+      <td>Return data about a single movie
+        by title to the user</td>
+      <td>/movies/[title]</td>
+      <td>GET</td>
+      <td>:title</td>
+      <td>none</td>
+      <td>A JSON object holding data about a single movie. Example:<br>
+        <pre>
+                    <code>
+          {
+            Title: '',
+            Description: '',
+            Year: '',
+            Genre: {
+              name: '',
+              description: ''
+            }
+            Director: {
+              name: '',
+              birth: '',
+              death: '',
+              bio: ''
+            },
+            Actors: {
+
+            }
+            ImageURL: '',
+            Featured: ''
+          }
+                    </code>
+                  </pre>
+      </td>
+    </tr>
+    <tr>
+      <td>Return data about a genre (description) by name/title (e.g., “Comedy”)</td>
+      <td>/movies/genres/[genre]</td>
+      <td>GET</td>
+      <td>:genre</td>
+      <td>none</td>
+      <td>A JSON object holding data about a genre. Example:<br>
+        <pre>
+                    <code>
+          {
+            name: 'Drama',
+            description: '',
+          }
+                    </code>
+                  </pre>
+      </td>
+    </tr>
+    <tr>
+      <td>Return data about a director by name</td>
+      <td>/movies/directors/[name]</td>
+      <td>GET</td>
+      <td>:name</td>
+      <td>None</td>
+      <td>A JSON object holding data about the selected director. Example:
+        <pre>
+              <code>
+    {
+      name: 'Christopher Nolan',
+      birth: '1966',
+      death: '-',
+      bio: 'Christopher Nolan CBE is a British-American film director, producer, and screenwriter.'
+    }
+              </code>
+            </pre>
+      </td>
+    </tr>
+    <tr>
+      <td>Get a list of all users</td>
+      <td>/users</td>
+      <td>GET</td>
+      <td>None</td>
+      <td>None</td>
+      <td>A JSON object holding data about all users, structured like:<br>
+        {<br>
+        {<br>
+        "_id": "",<br>
+        "Username": "Savalan",<br>
+        "Password": "Start1987!",<br>
+        "Email": "savalan.suleymanli@gmail.com",<br>
+        "Birthday": "1987-05-24T00:00:00.000Z",<br>
+        "FavoriteMovies": []<br>
+        },<br>
+        {<br>
+        "_id": "625616d56baa5ed1018267d0",<br>
+        "Username": "Max",<br>
+        "Password": "End1988!",<br>
+        "Email": "max@gmail.com",<br>
+        "Birthday": "1995-06-02T00:00:00.000Z",<br>
+        "FavoriteMovies": []<br>
+        }<br>
+        }</td>
+    </tr>
+    <tr>
+      <td>Allow new users to register</td>
+      <td>/users</td>
+      <td>POST</td>
+      <td>None</td>
+      <td>A JSON object holding data about the user to add. Example:
+        <pre>
+          <code>
+{
+  "Username": "Savalan",<br>
+  "Password": "Start1987!",<br>
+  "Email": "savalan.suleymanli@gmail.com",<br>
+  "Birthday": "1987-05-24T00:00:00.000Z",<br>
+}
+          </code>
+        </pre>
+      </td>
+      <td>A JSON object holding data about added user including ID. Example:
+        <pre>
+          <code>
+{
+  id: '1',
+  "username": "Max",
+  "Password": "End1988!",
+  "Email": "max@gmail.com",
+  "Birthday": "1995-06-02T00:00:00.000Z",
+  "favorites": [
+    "Godfather", "Inception"
+  ]
+}
+          </code>
+        </pre>
+      </td>
+    </tr>
+    <tr>
+      <td>Allow users to update their user info (username)</td>
+      <td>/users/[username]</td>
+      <td>PUT</td>
+      <td>:username</td>
+      <td> A JSON object holding the new username. Example:
+        <pre>
+          <code>
+{
+  "username": "Maxim"
+}
+          </code>
+        </pre>
+      </td>
+      <td>A JSON object with the updated user profile. Example:
+        <pre>
+          <code>
+{
+  id: '1',
+  username: 'Freyd',
+  email: 'heather041@gmail.com',
+  password: 'testing123'
+  birthday: '1990-04-07',
+  favorites: [
+    '', ''
+  ]
+}
+          </code>
+        </pre>
+      </td>
+    </tr>
+    <tr>
+      <td>Allow users to add a movie to their list of favorites</td>
+      <td>/users/[username]/[movie]</td>
+      <td>POST</td>
+      <td>:username, :movie</td>
+      <td>None</td>
+      <td>A text message indicating the movie was added</td>
+    </tr>
+    <tr>
+      <td>Allow users to remove a movie from their list of favorites</td>
+      <td>/users/[username]/[movie]</td>
+      <td>DELETE</td>
+      <td>:username, :movie</td>
+      <td>None</td>
+      <td>A text message indicating the movie was deleted</td>
+    </tr>
+    <tr>
+      <td>Allow existing users to deregister</td>
+      <td>/users/[username]</td>
+      <td>DELETE</td>
+      <td>:username</td>
+      <td>None</td>
+      <td>A message indicating the user was deregistered</td>
+    </tr>
+  </table>
+</body>
+
+</html>
