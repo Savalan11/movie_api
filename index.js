@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
 });
 
 //GET: list of movies
-/* app.get('/movies', passport.authenticate('jwt', { session: false }),
+app.get('/movies', passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Movies.find()
       .then((movies) => {
@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
         console.error(error);
         res.status(500).send('Error: ' + error);
       });
-  }); */
+  });
 
 //GET : a movie called by title
 app.get('/movies/:title', passport.authenticate('jwt', { session: false }),
