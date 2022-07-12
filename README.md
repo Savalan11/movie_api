@@ -2,7 +2,7 @@ movie_api
 Description
 Movie API for managing movie database.
 
-Server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
+Server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies..
 
 Essential Features
 Return a list of all movies to the user
